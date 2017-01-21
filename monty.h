@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <ctype.h>
+
+extern int push_value;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -36,6 +39,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-char **make_tokes(char *line);
-int check_codes(char **args);
+char *find_command(char *line);
+int check_codes(char *command);
+int int_check(char *push_arg);
 #endif

@@ -1,15 +1,16 @@
 #include "monty.h"
 
+int push_value;
+
 int main(int argc, char *argv[])
 {
 	FILE* file;
-	char *line, **args;
+	char *line, *command;
 	int checker;
 	size_t size, line_num;
 	ssize_t read = 0;
 
 	line = NULL;
-	args = NULL;
 	size = 0;
 	line_num = 1;
 	if (argc != 2)
@@ -23,19 +24,18 @@ int main(int argc, char *argv[])
 	read = getline(&line, &size, file);
 	while (read != -1)
 	{
-		args = make_tokes(line);
-		if (args == NULL)
+		command = find_command(line);
+		if (command == NULL)
 		{
-			printf("Error: malloc failed\n");
-			free(args);
+			printf("L%lu: usage: push integer\n", line_num);
 			free(line);
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
-		checker = check_codes(args);
+		checker = check_codes(command);
 		if (checker == 1)
 		{
-			printf("L%lu: unknown instruction %s\n", line_num, args[0]);
+			printf("L%lu: unknown instruction %s\n", line_num, command);
 			free(line);
 			fclose(file);
 			exit(EXIT_FAILURE);
@@ -44,30 +44,27 @@ int main(int argc, char *argv[])
 		read = getline(&line, &size, file);
 	}
 	free(line);
+	free(command);
 	fclose(file);
 	return (0);
 }
 
-char **make_tokes(char *line)
+char *find_command(char *line)
 {
-	char **args;
-	char *arg;
-	int i = 0;
+	char *command, *push_arg;
 
-	args = malloc(sizeof(char *) * 3);
-	if (args == NULL)
-		return (args);
-	arg = strtok(line, "\n \t\r");
-	while (arg != NULL)
+        command = strtok(line, "\n \t\r");
+	if (strcmp(command, "push") == 0)
 	{
-		args[i] = arg;
-		arg = strtok(NULL, "\n \t\r");
-		i++;
+		push_arg = strtok(NULL, "\n \t\r");
+		if (push_arg == NULL)
+			return (NULL);
+		int_check(push_arg);
 	}
-	return (args);
+	return (command);
 }
 
-int check_codes(char **args)
+int check_codes(char *command)
 {
 	char *opcodes = "push";
 	size_t i, arr_size;
@@ -76,11 +73,28 @@ int check_codes(char **args)
 	i = 0;
 	while (i < arr_size)
 	{
-		if (strcmp(args[0], opcodes) == 0)
+		if (strcmp(command, opcodes) == 0)
 			printf("Pushing\n");
 		else
 			return (1);
 		i++;
 	}
+	printf("push_value: %d\n", push_value);
+	return (0);
+}
+
+int int_check(char *push_arg)
+{
+	int i;
+
+	i = 0;
+	while (push_arg[i] != '\0')
+	{
+		if (isalpha(push_arg[i]))
+			return (1);
+		i++;
+	}
+	push_value = atoi(push_arg);
+	printf("push_value: %d\n", push_value);
 	return (0);
 }
