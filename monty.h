@@ -42,11 +42,9 @@ typedef struct instruction_s
 char *find_command(char *line);
 int check_codes(char *command);
 int int_check(char *push_arg);
-<<<<<<< HEAD
 
 /* in stack_basics.c */
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t go_to_end(stack_t *head);
-=======
->>>>>>> 671f191ed594e359fa02bcfd9db4bf4600afa784
+stack_t *enqueue(stack_t **head, const int n);
 #endif
