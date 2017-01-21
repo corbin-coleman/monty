@@ -47,4 +47,5 @@ int int_check(char *push_arg);
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t go_to_end(stack_t *head);
 stack_t *enqueue(stack_t **head, const int n);
+int pop(stack_t **head);
 #endif

@@ -65,3 +65,27 @@ stack_t *enqueue(stack_t **head, const int n)
 	new->prev = temp;
 	return (temp->next);
 }
+/**
+ * pop - deletes node at head and advances to next node
+ * @head: double ptr to head
+ * Return: 1 on success, -1 on failure
+ */
+int pop(stack_t **head)
+{
+	stack_t *temp;
+	unsigned int i;
+
+	if (!(head) || !(*head))
+		return (-1);
+	temp = *head;
+	if ((*head)->next == NULL)
+	{
+		*head = NULL;
+		free(temp);
+		return (1);
+	}
+	(*head) = (*head)->next;
+	(*head)->prev = NULL;
+	free(temp);
+	return (1);
+}
