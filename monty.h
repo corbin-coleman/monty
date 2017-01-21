@@ -44,8 +44,9 @@ int check_codes(char *command);
 int int_check(char *push_arg);
 
 /* in stack_basics.c */
-stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *push(stack_t **head, const int n);
+int pop(stack_t **head);
 stack_t go_to_end(stack_t *head);
 stack_t *enqueue(stack_t **head, const int n);
-int pop(stack_t **head);
+int dequeue(stack_t **head);
 #endif

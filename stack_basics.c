@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * add_dnodeint - adds node to beginning of list
+ * push - adds node to beginning of list
  * @head: address of previous "first" element
  * @n: integer value to be copied into node
  * Return: address to new node
  */
-stack_t *add_dnodeint(stack_t **head, const int n)
+stack_t *push(stack_t **head, const int n)
 {
 	stack_t *new;
 
@@ -33,9 +33,7 @@ stack_t go_to_end(stack_t *head)
 		return (NULL);
 	temp = head;
 	while (temp->next != NULL)
-	{
 		temp = temp->next;
-	}
 	return (temp);
 }
 /**
@@ -88,4 +86,27 @@ int pop(stack_t **head)
 	(*head)->prev = NULL;
 	free(temp);
 	return (1);
+}
+/**
+ * dequeue - removes node from end of linked list
+ * @head: double ptr to head
+ * Return: 1 on success, -1 on failure
+ */
+int dequeue(stack_t **head)
+{
+	if (!(head) || !(*head))
+		return (-1);
+	temp = *head;
+	if ((*head)->next == NULL)
+	{
+		*head = NULL;
+		free(temp);
+		return (1);
+	}
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->prev->next = NULL;
+	free(temp);
+	return (1);
+
 }
