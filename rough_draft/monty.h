@@ -39,11 +39,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void push(stack_t **stack, unsigned int line_num);
-void pall(stack_t **stack, unsigned int line_num);
-
 char *find_command(char *line);
-int check_codes(char *command, stack_t **stack, size_t line_num);
+int check_codes(char *command);
 int int_check(char *push_arg);
-void free_and_exit(char *line, FILE* file);
 #endif
