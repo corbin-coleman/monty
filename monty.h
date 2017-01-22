@@ -49,4 +49,8 @@ int pop(stack_t **head);
 stack_t go_to_end(stack_t *head);
 stack_t *enqueue(stack_t **head, const int n);
 int dequeue(stack_t **head);
+
+/* in print_operations.c */
+void pall(stack_t **head);
+void pint(stack_t **head);
 #endif
