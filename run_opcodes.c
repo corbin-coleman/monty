@@ -1,23 +1,37 @@
 #include "monty.h"
 
+int opcode_return = 0;
+
 int check_codes(char *command, stack_t **stack, size_t line_num)
 {
 	instruction_t opcodes[] = {
-		{"push", push},
-		{"pall", pall}
+		{"rotr", rotr},
+		{"rotl", rotl},
+		{"pstr", pstr},
+		{"pchar", pchar},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"sub", sub},
+		{"mul", mul},
+		{"div", _div},
+		{"mod", mod},
+		{NULL, NULL}
 	};
-	size_t i, arr_size;
+	size_t i;
 
-	arr_size = 2;
 	i = 0;
-	while (i < arr_size)
+	while (opcodes[i].opcode != NULL)
 	{
 		if (strcmp(command, opcodes[i].opcode) == 0)
 		{
 			opcodes[i].f(stack, line_num);
-			return (0);
+			return (opcode_return);
 		}
 		i++;
 	}
-	return (2);
+	printf("L%lu: unkown instruction %s\n", line_num, command);
+	return (1);
 }

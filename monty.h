@@ -7,7 +7,7 @@
 #include <string.h>
 #include <ctype.h>
 
-extern int push_value;
+extern int opcode_return;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -39,11 +39,26 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void push(stack_t **stack, unsigned int line_num);
+/**void push(stack_t **stack, unsigned int line_num);**/
 void pall(stack_t **stack, unsigned int line_num);
+void pint(stack_t **stack, unsigned int line_num);
+void pop(stack_t **stack, unsigned int line_num);
+void swap(stack_t **stack, unsigned int line_num);
+void add(stack_t **stack, unsigned int line_num);
+void sub(stack_t **stack, unsigned int line_num);
+void _div(stack_t **stack, unsigned int line_num);
+void mod(stack_t **stack, unsigned int line_num);
+void mul(stack_t **stack, unsigned int line_num);
+void pchar(stack_t **stack, unsigned int line_num);
+void pstr(stack_t **stack, unsigned int line_num);
+void rotr(stack_t **stack, unsigned int line_num);
+void rotl(stack_t **stack, unsigned int line_num);
 
-char *find_command(char *line);
+void add_node(stack_t **stack, int push_value);
+
+char *find_command(char *line, stack_t **stack, unsigned int line_num);
 int check_codes(char *command, stack_t **stack, size_t line_num);
 int int_check(char *push_arg);
-void free_and_exit(char *line, FILE* file);
+void free_and_exit(char *line, FILE* file, stack_t *stack);
+void free_stack(stack_t *stack);
 #endif
