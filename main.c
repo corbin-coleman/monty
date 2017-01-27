@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * main - Loop through given file and run given opcode commands
+ * @argc: The number of arguments passed to program
+ * @argv: The strings passed to the program
+ * Return: 1 if reaches end of the file, exit with EXIT_FAILURE
+ * if any opcode fails
+ **/
 int main(int argc, char *argv[])
 {
 	FILE *file;
@@ -42,6 +49,12 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
+/**
+ * free_and_exit - Free all necessary memory and exit with EXIT_FAILURE
+ * @line: The line found using getline()
+ * @file: The file opened and being read from
+ * @stack: The top of the stack list
+ **/
 void free_and_exit(char *line, FILE *file, stack_t *stack)
 {
 	free_stack(stack);
@@ -50,6 +63,10 @@ void free_and_exit(char *line, FILE *file, stack_t *stack)
 	exit(EXIT_FAILURE);
 }
 
+/**
+ * free_stack - Free all nodes of the stack
+ * @stack: Top of the stack list
+ **/
 void free_stack(stack_t *stack)
 {
 	stack_t *kill_node;
