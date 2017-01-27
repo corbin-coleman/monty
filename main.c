@@ -47,6 +47,11 @@ int main(int argc, char *argv[])
 		}
 		line_num++;
 		read = getline(&line, &size, file);
+		if (read == -1 && line == NULL)
+		{
+			printf("Error: Malloc failed\n");
+			free_and_exit(line, file, stack);
+		}
 	}
 	free_stack(stack);
 	free(line);
