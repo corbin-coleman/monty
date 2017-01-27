@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * pchar - Print out the element of the code as it's corresponding value
+ * on the ASCII table
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line that the command was found in the file
+ **/
 void pchar(stack_t **stack, unsigned int line_num)
 {
 	if (*stack != NULL)
@@ -22,6 +28,13 @@ void pchar(stack_t **stack, unsigned int line_num)
 	}
 }
 
+/**
+ * pstr - Print out every element of the stack as the corresponding character
+ * on the ASCII table, stops if the value is 0, the stack is over, or the
+ * value of the element is not in the ASCII table
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line that the command was found in the file
+ **/
 void pstr(stack_t **stack, unsigned int line_num)
 {
 	stack_t *walker;

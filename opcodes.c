@@ -1,26 +1,10 @@
 #include "monty.h"
 
 /**
-void push(stack_t **stack, unsigned int line_num)
-{
-	stack_t *new_node;
-
-	(void) line_num;
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	if (*stack != NULL)
-		(*stack)->prev = new_node;
-	new_node->next = *stack;
-	new_node->n = push_value;
-	new_node->prev = NULL;
-	*stack = new_node;
-}
-**/
-
+ * pall - Print all values in the stack
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line of the file the command was found
+ **/
 void pall(stack_t **stack, unsigned int line_num)
 {
 	stack_t *walker;
@@ -34,6 +18,11 @@ void pall(stack_t **stack, unsigned int line_num)
 	}
 }
 
+/**
+ * pop - Remove the top element of the stack
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line of the file the command was found
+ **/
 void pop(stack_t **stack, unsigned int line_num)
 {
 	stack_t *kill_node, *mover;
@@ -53,6 +42,12 @@ void pop(stack_t **stack, unsigned int line_num)
 	}
 }
 
+/**
+ * swap - Put the second element on top of the stack, put the top element
+ * in the second position
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line of the file the command was found
+ **/
 void swap(stack_t **stack, unsigned int line_num)
 {
 	stack_t *walker;
@@ -72,6 +67,11 @@ void swap(stack_t **stack, unsigned int line_num)
 	}
 }
 
+/**
+ * pint - Print the top element of the stack
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line of the file the command was found
+ **/
 void pint(stack_t **stack, unsigned int line_num)
 {
 	if (*stack == NULL)

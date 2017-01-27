@@ -2,6 +2,14 @@
 
 int opcode_return = 0;
 
+/**
+ * check_codes - Check the found command against all possible opcodes
+ * @command: The command found on the line
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line that the command was found
+ * Return: 1 if no command is found, return opcode_return if command was
+ * found. (opcode_return is changed by the opcodes, if they fail)
+ **/
 int check_codes(char *command, stack_t **stack, size_t line_num)
 {
 	instruction_t opcodes[] = {
@@ -33,5 +41,6 @@ int check_codes(char *command, stack_t **stack, size_t line_num)
 		i++;
 	}
 	printf("L%lu: unkown instruction %s\n", line_num, command);
+	opcode_return = 1;
 	return (1);
 }

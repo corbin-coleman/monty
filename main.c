@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-	FILE* file;
+	FILE *file;
 	char *line, *command;
 	size_t size, line_num;
 	stack_t *stack;
@@ -26,10 +26,9 @@ int main(int argc, char *argv[])
 	read = getline(&line, &size, file);
 	while (read != -1)
 	{
-		opcode_return = 0;
 		command = find_command(line, &stack, line_num);
 		if (strcmp(command, "nop"))
-		    check_codes(command, &stack, line_num);
+			check_codes(command, &stack, line_num);
 		if (opcode_return != 0)
 		{
 			free_and_exit(line, file, stack);
@@ -43,10 +42,9 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-void free_and_exit(char *line, FILE* file, stack_t *stack)
+void free_and_exit(char *line, FILE *file, stack_t *stack)
 {
-	if (stack != NULL)
-		free_stack(stack);
+	free_stack(stack);
 	free(line);
 	fclose(file);
 	exit(EXIT_FAILURE);

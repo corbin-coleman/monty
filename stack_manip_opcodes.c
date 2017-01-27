@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * rotl - Take the top element of the stack and put it on the bottom,
+ * the second element of the stack becomes the top
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line that the command was found
+ **/
 void rotl(stack_t **stack, unsigned int line_num)
 {
 	stack_t *walker, *first_node, *second_node;
@@ -21,6 +27,11 @@ void rotl(stack_t **stack, unsigned int line_num)
 	}
 }
 
+/**
+ * rotr - The last element of the stack becomes the top element of the stack
+ * @stack: Double pointer to the top of the stack
+ * @line_num: The line that the command was found
+ **/
 void rotr(stack_t **stack, unsigned int line_num)
 {
 	stack_t *last_node, *second_last_node;
