@@ -24,6 +24,11 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	read = getline(&line, &size, file);
+	if (read == -1)
+	{
+		printf("Error: Malloc failed\n");
+		free_and_exit(line, file, stack);
+	}
 	while (read != -1)
 	{
 		command = find_command(line, &stack, line_num);
