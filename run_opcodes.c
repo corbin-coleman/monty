@@ -40,7 +40,7 @@ int check_codes(char *command, stack_t **stack, size_t line_num)
 		}
 		i++;
 	}
-	printf("L%lu: unkown instruction %s\n", line_num, command);
+	printf("L%lu: unknown instruction %s\n", line_num, command);
 	opcode_return = 1;
 	return (1);
 }

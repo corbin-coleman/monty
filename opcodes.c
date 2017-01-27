@@ -54,7 +54,7 @@ void swap(stack_t **stack, unsigned int line_num)
 	int tmp;
 
 	walker = *stack;
-	if (walker->next == NULL)
+	if (walker == NULL || walker->next == NULL)
 	{
 		printf("L%u: can't swap, stack too short\n", line_num);
 		opcode_return = 1;
