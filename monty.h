@@ -7,7 +7,7 @@
 #include <string.h>
 #include <ctype.h>
 
-extern int push_value;
+extern int opcode_return;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -20,9 +20,9 @@ extern int push_value;
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -35,22 +35,30 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-char *find_command(char *line);
-int check_codes(char *command);
+/**void push(stack_t **stack, unsigned int line_num);**/
+void pall(stack_t **stack, unsigned int line_num);
+void pint(stack_t **stack, unsigned int line_num);
+void pop(stack_t **stack, unsigned int line_num);
+void swap(stack_t **stack, unsigned int line_num);
+void add(stack_t **stack, unsigned int line_num);
+void sub(stack_t **stack, unsigned int line_num);
+void _div(stack_t **stack, unsigned int line_num);
+void mod(stack_t **stack, unsigned int line_num);
+void mul(stack_t **stack, unsigned int line_num);
+void pchar(stack_t **stack, unsigned int line_num);
+void pstr(stack_t **stack, unsigned int line_num);
+void rotr(stack_t **stack, unsigned int line_num);
+void rotl(stack_t **stack, unsigned int line_num);
+
+void add_node(stack_t **stack, int push_value);
+
+char *find_command(char *line, stack_t **stack, unsigned int line_num);
+int check_codes(char *command, stack_t **stack, size_t line_num);
 int int_check(char *push_arg);
-
-/* in stack_basics.c */
-stack_t *push(stack_t **head, const int n);
-int pop(stack_t **head);
-stack_t go_to_end(stack_t *head);
-stack_t *enqueue(stack_t **head, const int n);
-int dequeue(stack_t **head);
-
-/* in print_operations.c */
-void pall(stack_t **head);
-void pint(stack_t **head);
+void free_and_exit(char *line, FILE *file, stack_t *stack);
+void free_stack(stack_t *stack);
 #endif
