@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	line_num = 1;
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		printf("usage: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
