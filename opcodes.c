@@ -25,19 +25,20 @@ void pall(stack_t **stack, unsigned int line_num)
  **/
 void pop(stack_t **stack, unsigned int line_num)
 {
-	stack_t *kill_node, *mover;
+	stack_t *kill_node, *walker;
 
-	mover = *stack;
-	if (mover == NULL)
+	walker = *stack;
+	if (walker == NULL)
 	{
 		printf("L%u: can't pop an empty stack\n", line_num);
 		ret_and_q.opcode_return = 1;
 	}
 	if (ret_and_q.opcode_return != 1)
 	{
-		kill_node = mover;
-		*stack = mover->next;
-		mover->prev = NULL;
+		kill_node = walker;
+		*stack = walker->next;
+		if (walker != NULL)
+			walker->prev = NULL;
 		free(kill_node);
 	}
 }
