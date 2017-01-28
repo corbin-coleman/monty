@@ -11,7 +11,7 @@ void rotl(stack_t **stack, unsigned int line_num)
 	stack_t *walker, *first_node, *second_node;
 
 	(void) line_num;
-	if (*stack != NULL)
+	if (*stack != NULL && (*stack)->next != NULL)
 	{
 		walker = first_node = *stack;
 		second_node = walker->next;
@@ -37,7 +37,7 @@ void rotr(stack_t **stack, unsigned int line_num)
 	stack_t *last_node, *second_last_node;
 
 	(void) line_num;
-	if (*stack != NULL)
+	if (*stack != NULL && (*stack)->next != NULL)
 	{
 		last_node = *stack;
 		while (last_node->next != NULL)
