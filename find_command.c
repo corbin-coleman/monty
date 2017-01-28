@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * find_command - Parse the line to find the given opcode
+ * @line: Line grabbed from monty file
+ * @stack: Double pointer pointing to top of stack/queue
+ * @line_num: Line number in the file the line was on
+ * Return: The name of the command found
+ **/
 char *find_command(char *line, stack_t **stack, unsigned int line_num)
 {
 	char *command, *push_arg;
@@ -40,6 +47,11 @@ char *find_command(char *line, stack_t **stack, unsigned int line_num)
 	return (command);
 }
 
+/**
+ * int_check - Check if the given argument to push is a valid integer or not
+ * @push_arg: The string argument found after the push opcode
+ * Return: 1 if it's not a valid integer, 0 if it is
+ **/
 int int_check(char *push_arg)
 {
 	int i;
@@ -56,6 +68,11 @@ int int_check(char *push_arg)
 	return (0);
 }
 
+/**
+ * add_node - Add a node to the top of the list
+ * @stack: Double pointer to the top of the stack
+ * @push_value: The value to assign to the new node
+ **/
 void add_node(stack_t **stack, int push_value)
 {
 	stack_t *new_node;
@@ -77,6 +94,11 @@ void add_node(stack_t **stack, int push_value)
 	}
 }
 
+/**
+ * add_node_end - Add a node at the end of the list
+ * @stack: Double pointer to the top of the stack
+ * @push_value: The value to assign to the new node
+ **/
 void add_node_end(stack_t **stack, int push_value)
 {
 	stack_t *new_node;
@@ -91,7 +113,7 @@ void add_node_end(stack_t **stack, int push_value)
 	}
 	if (ret_and_q.opcode_return != 1)
 	{
-		while(walker != NULL && walker->next != NULL)
+		while (walker != NULL && walker->next != NULL)
 			walker = walker->next;
 		new_node->n = push_value;
 		new_node->next = NULL;
