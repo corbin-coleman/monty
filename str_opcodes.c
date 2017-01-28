@@ -13,9 +13,9 @@ void pchar(stack_t **stack, unsigned int line_num)
 		if ((*stack)->n < 0 || (*stack)->n > 127)
 		{
 			printf("L%u: can't pchar, value out of range\n", line_num);
-			opcode_return = 1;
+			ret_and_q.opcode_return = 1;
 		}
-		if (opcode_return == 0)
+		if (ret_and_q.opcode_return == 0)
 		{
 			putchar((*stack)->n);
 			putchar('\n');
@@ -24,7 +24,7 @@ void pchar(stack_t **stack, unsigned int line_num)
 	else
 	{
 		printf("L%u: can't pchar, stack empty\n", line_num);
-		opcode_return = 1;
+		ret_and_q.opcode_return = 1;
 	}
 }
 

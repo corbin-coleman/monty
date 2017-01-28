@@ -31,9 +31,9 @@ void pop(stack_t **stack, unsigned int line_num)
 	if (mover == NULL)
 	{
 		printf("L%u: can't pop an empty stack\n", line_num);
-		opcode_return = 1;
+		ret_and_q.opcode_return = 1;
 	}
-	if (opcode_return != 1)
+	if (ret_and_q.opcode_return != 1)
 	{
 		kill_node = mover;
 		*stack = mover->next;
@@ -57,9 +57,9 @@ void swap(stack_t **stack, unsigned int line_num)
 	if (walker == NULL || walker->next == NULL)
 	{
 		printf("L%u: can't swap, stack too short\n", line_num);
-		opcode_return = 1;
+		ret_and_q.opcode_return = 1;
 	}
-	if (opcode_return != 1)
+	if (ret_and_q.opcode_return != 1)
 	{
 		tmp = walker->n;
 		walker->n = walker->next->n;
@@ -77,9 +77,9 @@ void pint(stack_t **stack, unsigned int line_num)
 	if (*stack == NULL)
 	{
 		printf("L%u: can't pint, stack empty\n", line_num);
-		opcode_return = 1;
+		ret_and_q.opcode_return = 1;
 	}
-	if (opcode_return != 1)
+	if (ret_and_q.opcode_return != 1)
 	{
 		printf("%d\n", (*stack)->n);
 	}

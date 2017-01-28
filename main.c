@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 		command = find_command(line, &stack, line_num);
 		if (strcmp(command, "nop"))
 			check_codes(command, &stack, line_num);
-		if (opcode_return != 0)
+		if (ret_and_q.opcode_return != 0)
 		{
 			free_and_exit(line, file, stack);
 		}

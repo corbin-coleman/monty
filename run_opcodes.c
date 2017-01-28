@@ -1,6 +1,6 @@
 #include "monty.h"
 
-int opcode_return = 0;
+opret_q ret_and_q = {0, 0};
 
 /**
  * check_codes - Check the found command against all possible opcodes
@@ -36,11 +36,11 @@ int check_codes(char *command, stack_t **stack, size_t line_num)
 		if (strcmp(command, opcodes[i].opcode) == 0)
 		{
 			opcodes[i].f(stack, line_num);
-			return (opcode_return);
+			return (ret_and_q.opcode_return);
 		}
 		i++;
 	}
 	printf("L%lu: unknown instruction %s\n", line_num, command);
-	opcode_return = 1;
+	ret_and_q.opcode_return = 1;
 	return (1);
 }

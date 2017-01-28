@@ -7,7 +7,13 @@
 #include <string.h>
 #include <ctype.h>
 
-extern int opcode_return;
+typedef struct op_ret_queue_ss
+{
+	int opcode_return;
+	int queue_val;
+} opret_q;
+
+extern opret_q ret_and_q;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -55,6 +61,7 @@ void rotr(stack_t **stack, unsigned int line_num);
 void rotl(stack_t **stack, unsigned int line_num);
 
 void add_node(stack_t **stack, int push_value);
+void add_node_end(stack_t **stack, int push_value);
 
 char *find_command(char *line, stack_t **stack, unsigned int line_num);
 int check_codes(char *command, stack_t **stack, size_t line_num);
