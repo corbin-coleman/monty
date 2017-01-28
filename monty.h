@@ -7,7 +7,12 @@
 #include <string.h>
 #include <ctype.h>
 
-typedef struct op_ret_queue_ss
+/**
+ * struct op_ret_queue_s - Return value of opcodes and if list is stack/queue
+ * @opcode_return: Return value of the void opcode functions
+ * @queue_val: 1 if list is a queue, 0 if it's a stack
+ **/
+typedef struct op_ret_queue_s
 {
 	int opcode_return;
 	int queue_val;
